@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}LinkedIn Scraper{% endblock %}
+
+{% block content %}
+  <div class="container col-md-10">
+    <div class="row">
+      <h1 class="mb-4">LinkedIn Scraper</h1>
+
+      <form action="{% url 'generate_cv' %}" class="col-md-6" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="{{ form.username.id_for_label }}" class="form-label">LinkedIn Username</label>
+          {{ form.username }}
+        </div>
+        <div class="mb-3">
+          <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+          {{ form.email }}
+        </div>
+        <div class="mb-3">
+          <label for="{{ form.password.id_for_label }}" class="form-label">Password</label>
+          {{ form.password }}
+        </div>
+        <button type="submit" class="btn btn-primary">Scrape and Generate CV</button>
+      </form>
+
+      <div class="col-md-4">
+        <h5>Important Notes:</h5>
+        <ol>
+          <li>Cannot parse special characters on LinkedIn such as quotation marks and "&" signs.</li>
+          <li>Cannot parse multiple roles in a single company yet</li>
+          <li>Limited due to web scraping speeds.</li>
+          <li>For best results, have a completely filled out LinkedIn profile.</li>
+        </ol>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <title>LinkedIn Scraper</title>
+</head>
+<body>
+    <h1>LinkedIn Scraper</h1>
+    <form action="{% url 'generate_cv' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Scrape and Generate CV</button>
+    </form>
+</body>
+</html> -->
